@@ -1,0 +1,61 @@
+<<%- include("_header") -%>
+
+<form id="sumofseries-form">
+  <table>
+    <tr>
+      <td><label for="start">Starting Number:</label></td>
+      <td><input type="number" id="start" name="start" required></td>
+      <td>(Required)</td>
+    </tr>
+    <tr>
+      <td><label for="end">Ending Number:</label></td>
+      <td><input type="number" id="end" name="end" required></td>
+      <td>(Required)</td>
+    </tr>
+    <tr>
+      <td><label for="increment">Increment:</label></td>
+      <td><input type="number" id="increment" name="increment" required></td>
+      <td>(Required)</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button type="submit">Calculate Sum</button></td>
+    </tr>
+  </table>
+</form>
+<div id="result">
+  <% if (typeof error !== 'undefined') { %>
+    <span style="color: red;"><%= error %></span>
+  <% } else if (typeof sum !== 'undefined') { %>
+    <strong>Sum: <%= sum %></strong>
+  <% } %>
+</div>
+
+<script src="/index.js"></script>
+<script>
+  const form = document.getElementById('sumofseries-form');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const start = parseInt(form.elements.start.value);
+    const end = parseInt(form.elements.end.value);
+    const increment = parseInt(form.elements.increment.value);
+
+    if (start >= end) {
+      resultDiv.innerHTML = '<span style="color: red;">Error: Starting number must be less than ending number</span>';
+      return;
+    }
+    function calculateSum(start, end, increment) {
+    let sum = 0;
+    for (let i = start; i <= end; i += increment) {
+      sum += i;
+    }
+    return sum;}
+    const sum = calculateSum(start, end, increment);
+    resultDiv.innerHTML = `<strong>Sum: ${sum}</strong>`;
+  });
+</script>
+
+<%- include("_footer") -%>

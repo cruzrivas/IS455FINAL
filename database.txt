@@ -1,0 +1,1 @@
+psql postgres://postgres:FmQ31bnuBmPBy8qFFP1LqYLt2c94ScmaFrI0xryicXHdX7QCJhoW7TfUYVdpc8Vt@p.oqhcmqxjt5gy3awzvlzamy4azi.db.postgresbridge.com:5432/postgres
